@@ -46,30 +46,123 @@ var IE8 = {
 			]
 		},
 		prototype: {
-			blacklist: [
-				'toISOString'
+			whitelist: [
+				'toDateString',
+				'toTimeString',
+				'toLocaleString',
+				'toLocaleDateString',
+				'toLocaleTimeString',
+				'getTime',
+				'getFullYear',
+				'getUTCFullYear',
+				'getMonth',
+				'getUTCMonth',
+				'getDate',
+				'getUTCDate',
+				'getDay',
+				'getUTCDay',
+				'getHours',
+				'getUTCHours',
+				'getMinutes',
+				'getUTCMinutes',
+				'getSeconds',
+				'getUTCSeconds',
+				'getMilliseconds',
+				'getUTCMilliseconds',
+				'getTimezoneOffset',
+				'setTime',
+				'setMilliseconds',
+				'setUTCMilliseconds',
+				'setSeconds',
+				'setUTCSeconds',
+				'setMinutes',
+				'setUTCMinutes',
+				'setHours',
+				'setUTCHours',
+				'setDate',
+				'setUTCDate',
+				'setMonth',
+				'setUTCMonth',
+				'setFullYear',
+				'setUTCFullYear',
+				'toGMTString',
+				'toUTCString',
+				'getYear',
+				'setYear',
+				'toJSON'
 			]
 		}
 	},
 	String: {
-		blacklist: [],
+		whitelist: [
+			'length',
+			'fromCharCode'
+		],
 		prototype: {
-			blacklist: [
-				'trim'
+			whitelist: [
+				'length',
+				'constructor',
+				'valueOf',
+				'toString',
+				'charAt',
+				'charCodeAt',
+				'concat',
+				'indexOf',
+				'lastIndexOf',
+				'localeCompare',
+				'match',
+				'replace',
+				'search',
+				'slice',
+				'split',
+				'substring',
+				'substr',
+				'toLowerCase',
+				'toLocaleLowerCase',
+				'toUpperCase',
+				'toLocaleUpperCase',
+				'link',
+				'anchor',
+				'fontcolor',
+				'fontsize',
+				'big',
+				'blink',
+				'bold',
+				'fixed',
+				'italics',
+				'small',
+				'strike',
+				'sub',
+				'sup'
 			]
 		}
 	},
 	Number: {
-		blacklist: [],
+		whitelist: [
+			'length',
+			'MAX_VALUE',
+			'MIN_VALUE',
+			'NaN',
+			'NEGATIVE_INFINITY',
+			'POSITIVE_INFINITY'
+		],
 		prototype: {
-			blacklist: []
+			whitelist: [
+				'toFixed',
+				'toExponential',
+				'toPrecision'
+			]
 		}
 	},
 	Function: {
 		blacklist: [],
 		prototype: {
-			blacklist: [
-				'bind'
+			whitelist: [
+				'length',
+				'constructor',
+				'toString',
+				'call',
+				'apply'
 			]
 		}
 	},
@@ -79,16 +172,17 @@ var IE8 = {
 			blacklist: []
 		}
 	},
+	//@TODO this is going to be a big project
 	Event: {
-		blacklist: [],
+		blacklist: [
+			'toString'
+		],
 		prototype: {
-			blacklist: [
-				'preventDefault'
-			]
+			blacklist: []
 		}
 	},
 	Error: {
-		blacklist: [],
+		whitelist: [],
 		prototype: {
 			blacklist: []
 		}
