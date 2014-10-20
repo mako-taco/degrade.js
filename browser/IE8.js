@@ -7,9 +7,10 @@ var preserved = require('../utils/preserved')(window),
 /**
  * @param {object} options
  * @param {object} options.console
- * @param {'remove'|'error'|'warn'|'ignore'} options.console.strategy 
- * @param {'debug'|'trace'|'error'|'warn'|'log'} options.console.logLevel
- * @param {'debug'|'trace'|'error'|'warn'|'log'} options.logLevel
+ * @param {'alert'|'error'|'ignore'} [options.console.strategy='alert']
+ * @param {'warn'|'trace'|'error'|'log'|'debug'} [options.console.logLevel=
+ *	'error'] - controls how to alert the user when a call to console[method] 
+ *	is made 
  */
 module.exports = function (options) {
 	var browserSetting,
@@ -18,9 +19,8 @@ module.exports = function (options) {
 
 	options = defaultArg(options, {});
 	options.console = defaultArg(options.console, {});
-	options.console.strategy = defaultArg(options.console.strategy, 'warn');
-	options.console.logLevel = defaultArg(options.console.logLevel, 'warn');
-	options.logLevel = defaultArg(options.logLevel, 'warn');
+	options.console.strategy = defaultArg(options.console.strategy, 'alert');
+	options.console.logLevel = defaultArg(options.console.logLevel, 'error');
 
 	for(key in browserSettings) {
 		if(browserSettings.hasOwnProperty(key)) {
