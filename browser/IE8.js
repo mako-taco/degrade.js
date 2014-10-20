@@ -1,8 +1,8 @@
-var browserSettings = require('./browserSettings').IE8,
+var preserved = require('../utils/preserved')(window),
+	browserSettings = require('./browserSettings').IE8,
 	applySetting = require('../utils/common').applySetting,
 	defaultArg = require('../utils/defaultArg'),
-	degradeConsole = require('../degradations/degradeConsole'),
-	preserved = require('../utils/preserved');
+	degradeConsole = require('../degradations/degradeConsole');
 
 /**
  * @param {object} options

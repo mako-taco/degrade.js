@@ -2,7 +2,8 @@ var defaultArg = require('../utils/defaultArg');
 
 module.exports = {
 	createDegradedErrorFn: createDegradedErrorFn,
-	applyWhitelist: applyWhitelist
+	applyWhitelist: applyWhitelist,
+	applySetting: applySetting
 };
 
 /**
@@ -38,13 +39,12 @@ function applyWhitelist(options) {
 	for(key in options.object) {
 		if(options.object.hasOwnProperty(key) &&
 			options.whitelist.indexOf(key) === -1) {
-				if(options.object[key] instanceof Function) {
-					options.object[key] = createDegradedErrorFn(options.name, 
-						options.key);
-				}
-				else {
-					delete options.object[key];
-				}
+			if(options.object[key] instanceof Function) {
+				options.object[key] = createDegradedErrorFn(options.name, 
+					options.key);
+			}
+			else {
+				delete options.object[key];
 			}
 		}
 	}
@@ -71,13 +71,12 @@ function applyBlacklist(options) {
 	for(key in options.object) {
 		if(options.object.hasOwnProperty(key) &&
 			options.blacklist.indexOf(key) !== -1) {
-				if(options.object[key] instanceof Function) {
-					options.object[key] = createDegradedErrorFn(options.name, 
-						options.key);
-				}
-				else {
-					delete options.object[key];
-				}
+			if(options.object[key] instanceof Function) {
+				options.object[key] = createDegradedErrorFn(options.name, 
+					options.key);
+			}
+			else {
+				delete options.object[key];
 			}
 		}
 	}
@@ -99,6 +98,8 @@ function applyBlacklist(options) {
  * @param {string} options.name - name of object to modify
  */
 function applySetting(options) {
+	var setting = options.setting;
+
 	if(setting.blacklist) {
 		applyBlacklist({
 			list: options.setting.blacklist,
@@ -117,7 +118,7 @@ function applySetting(options) {
 	if(setting.prototype) {
 		applySetting({
 			setting: options.setting.prototype,
-			target: options.target.prototype
+			target: options.target.prototype,
 			name: options.name + '.prototype'
 		});
 	}

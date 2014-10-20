@@ -1,5 +1,5 @@
-module.exports = function (arg, default) {
+module.exports = function (arg, defaultValue) {
 	return arg !== undefined ?
 		arg :
-		default;
+		defaultValue;
 }
