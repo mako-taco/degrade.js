@@ -39,6 +39,7 @@ module.exports = function (options) {
 	degradeParseInt();
 	degradeObjectDefineProperty();
 	degradeObjectGetOwnPropertyDescriptor();
+	degradeEventHasOwnProperty();
 };
 
 function degradeParseInt() {
@@ -76,5 +77,12 @@ function degradeObjectGetOwnPropertyDescriptor() {
 			throw new Error('Degrade: getOwnPropertyDescriptor can only be ' +
 				'called on objects of type HTMLElement in IE8');
 		}
+	};
+}
+
+function degradeEventHasOwnProperty() {
+	Event.degradeEventHasOwnProperty = function () {
+		throw new Error('Degrade: Event.hasOwnProperty is not supported in ' +
+			'IE8');
 	};
 }
